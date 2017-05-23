@@ -39,12 +39,12 @@ This however is not doing anything particularly special.
     var pathAnimation = CAKeyFrameAnimation.FromKeyPath("position");
     pathAnimation.Path = path.CGPath;
 
-    var sizeAnimation = CABasicAnimation.FromKeyPath("bounds");
-    sizeAnimation.From = NSValue.FromCGRect(new CGRect(0, 0, 0, 0));
-    sizeAnimation.To = NSValue.FromCGRect(MyView.Layer.Bounds);
+    var sizeAnimation = CABasicAnimation.FromKeyPath("transform");
+    sizeAnimation.From = NSValue.FromCATransform3D(CATransform3D.MakeScale(0, 0, 1));
+    sizeAnimation.To = NSValue.FromCATransform3D(CATransform3D.Identity);
 
     var rotateAnimation = CAKeyFrameAnimation.FromKeyPath("transform");
-        rotateAnim.Values = new[] {
+    rotateAnim.Values = new[] {
         NSValue.FromCATransform3D(CATransform3D.Identity),
         NSValue.FromCATransform3D(CATransform3D.MakeRotation(3.14f / 8, 0, 0, -1.0f)),
         NSValue.FromCATransform3D(CATransform3D.MakeRotation(-3.14f / 8, 0, 0, -1.0f)),
